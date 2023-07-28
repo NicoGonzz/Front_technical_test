@@ -1,0 +1,7 @@
+<form class="form-login" [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <h1>Ingresa ahora</h1>
+  <input class="control" formControlName="email"     type="email" name="email" id="email" placeholder="Ingrese su Correo" required>
+  <input class="control" formControlName="password"    type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
+  <button class="button"  type="submit"  value="Registrarme">Ingresar</button>
+    <div class="error"></div>
+</form>
