@@ -2,12 +2,12 @@
   <div class="left-navbar">
     <ul>
       <li>
-        <a href="">
+        <a routerLink="/dashboard">
           <span class="title">Drag&Drop</span>
         </a>
       </li>
       <li>
-        <a href="">
+        <a routerLink="/dashboard" >
           <span class="title">Dashboard</span>
         </a>
       </li>
@@ -30,4 +30,15 @@
       </label>
       <button *ngIf="fileChoosen" (click)="clearFile()">Eliminar archivo</button>
       </div>
+      <div class="labels">
+        <label>Estado con mayor acumulado a la fecha: </label>
+        <label>Estado con menor acumulado a la fecha: </label>
+        <label>Estado más afectado: </label>
+      </div>
+      <div class="graphic">
+          Grafica
+      </div>
   </div>
+
+
+

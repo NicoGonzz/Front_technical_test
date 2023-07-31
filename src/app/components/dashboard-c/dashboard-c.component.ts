@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardCComponent {
   fileChoosen: File | null = null;
+  parsedData: any[] = [];
 
   choosenFile(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -22,4 +23,6 @@ export class DashboardCComponent {
       fileInput.value = '';
     }
   }
+
+
 }
