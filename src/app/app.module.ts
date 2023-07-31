@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardCComponent } from './components/dashboard-c/dashboard-c.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -17,14 +18,17 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    DashboardCComponent
+    DashboardCComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule
+
 
   ],
   providers: [],

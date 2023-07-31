@@ -30,15 +30,20 @@
       </label>
       <button *ngIf="fileChoosen" (click)="clearFile()">Eliminar archivo</button>
       </div>
+        <div class="labels-container">
       <div class="labels">
         <label>Estado con mayor acumulado a la fecha: {{mostRepeatedData?.state}} {{mostRepeatedData?.city}}</label>
         <label>Estado con menor acumulado a la fecha: {{leastRepeatedData?.state}} {{leastRepeatedData?.city}}</label>
         <label>Estado más afectado: {{mostRepeatedData?.state}} </label>
         <label>Lenght del array: {{ExcelData.length}}</label>
-
       </div>
-      <div class="graphic">
-          Grafica
+        </div>
+      <div *ngIf="chartData.length > 0">
+        <ngx-charts-pie-chart
+          [results]="chartData"
+          [view]="[150, 300]"
+        >
+        </ngx-charts-pie-chart>
       </div>
   </div>
 

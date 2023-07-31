@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 interface CityState { //Interfaz para encontrar estado con mayor acumulado y menor acumulado
   city: string;
@@ -15,10 +16,13 @@ export class DashboardCComponent {
   fileChoosen: File | null = null;
   parsedData: any[] = [];
   ExcelData:any[] = []; //Guardamos los datos del excel
+
   leastRepeatedData: CityState | undefined;
   mostRepeatedData: CityState | undefined;
 
+  chartData: any[] = [];
 
+// Se leen los datos del archivo seleccionado
   choosenFile(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
@@ -26,7 +30,7 @@ export class DashboardCComponent {
       this.ReadExcel(event);
     }
   }
-//Guarda datos
+//Guarda datos del archivo seleccionado
 ReadExcel(event:any){
         let file = event.target.files[0];
 
@@ -40,9 +44,10 @@ ReadExcel(event:any){
           console.log(this.ExcelData);
           this.findLeastRepeatedData();
           this.findMostRepeatedData();
+          this.prepareChartData();
         }
    }
-
+//Se elimina el archivo de ser necesario
   clearFile() {
     this.fileChoosen = null;
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
@@ -50,7 +55,7 @@ ReadExcel(event:any){
       fileInput.value = '';
     }
   }
-
+//Funciones del estado que mas afectado esta y el que menos
   findLeastRepeatedData() {
     if (this.ExcelData.length > 0) {   //Confimamos que tenga datos
       const occurrencesMap: Map<string, number> = new Map(); //Se almaacenan las combinaciones estado-ciudad
@@ -73,6 +78,7 @@ ReadExcel(event:any){
       if (leastRepeatedKey) {
         const [state, city] = leastRepeatedKey.split('-');//Se separa cada dato
         this.leastRepeatedData = { state, city }; //Se asigna el nuevo valor
+
       }
     }
   }
@@ -103,10 +109,29 @@ ReadExcel(event:any){
       }
     }
   }
+  //Grafica
 
+  prepareChartData() {
+    if (this.ExcelData.length > 0) {
+      const totalDeathsSum = this.ExcelData.reduce(
+        (sum, row) => sum + row['TotalDeaths'],
+        0
+      );
 
+      this.chartData = this.ExcelData.map((row) => {
+        const state = row['Province_State'];
+        const city = row['Admin2'];
+        const deaths = row['TotalDeaths'];
+        const population = row['Population'];
 
+        const percentage = (deaths / population) * 100;
 
-
+        return {
+          name: `${state} - ${city}`,
+          value: percentage,
+        };
+      });
+    }
+  }
 
 }
