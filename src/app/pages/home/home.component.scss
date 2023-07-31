@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  app-login {
+    flex: 1;
+    margin-bottom: 0px;
+  }
+
+  p {
+    margin: 0;
+    bottom: 10px;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 15px;
+  }
+}

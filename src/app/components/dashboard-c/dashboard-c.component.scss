@@ -1,0 +1,67 @@
+.left-navbar {
+  position: fixed;
+  width: 220px;
+  height: 100%;
+  background: rgb(97, 161, 245);
+  border-left: 10px solid black;
+  transition: 0.5s;
+  overflow: hidden;
+  margin-top: auto;
+
+  ul {
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 100%;
+
+    li {
+      position: relative;
+      width: 200%;
+      list-style: none;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      a {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        text-decoration: none;
+        span {
+          height: 120px;
+          line-height: 60px;
+        }
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    left: 0;
+    ul {
+      position: static;
+      transform: none;
+      width: 100%;
+      li {
+        width: 100%;
+        border-radius: 0;
+        a {
+          justify-content: center;
+          span {
+            height: auto;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
